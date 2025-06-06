@@ -62,7 +62,6 @@ if option_data is not None:
     st.subheader(f'Implied Volatility Surface for {user_ticker}')
     st.write(f"Data as of {datetime.today().date()}")
     
-    # Prepare data for surface plot
     x = option_data['time_to_expiration'].values  # Years to expiration
     if display_mode == 'Strike':
         y = option_data['strike'].values             # Strike prices
@@ -103,8 +102,6 @@ if option_data is not None:
             hoverinfo='skip'
         )
     )
-
-    # Update layout
     fig.update_layout(
         title=f'Implied Volatility Surface for {user_ticker}',
         scene=dict(
@@ -117,8 +114,6 @@ if option_data is not None:
         margin=dict(l=0, r=0, b=0, t=40),
         height=800
     )
-
-    # Update hover template
     fig.update_traces(
         hovertemplate=(
             "Years: %{x:.2f}<br>"
@@ -126,9 +121,4 @@ if option_data is not None:
             "IV: %{z:.2f}<extra></extra>"
         )
     )
-
-    # Display the plot
     st.plotly_chart(fig, use_container_width=True)
-    
-    # Show raw data if requested
-   
