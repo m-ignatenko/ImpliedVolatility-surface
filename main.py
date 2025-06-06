@@ -6,11 +6,25 @@ from datetime import datetime
 import plotly.graph_objects as go
 from scipy.interpolate import griddata
 
+st.set_page_config(
+        page_title="Implied Volatility Surface",
+        page_icon="chart_with_upwards_trend",
+        layout="wide")
 st.title('Implied Volatility Surface Visualizer')
+linkedin_url = "https://www.linkedin.com/in/mikhail-ignatenko-b79876243/"
+st.markdown(f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: middle; margin-right: 10px;">`Mikhail Ignatenko`</a>', unsafe_allow_html=True)
+tg_link = "https://t.me/mikhail_lc"
+st.markdown(f'<a href="{tg_link}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/128/2111/2111646.png" width="25" height="25" style="vertical-align: middle; margin-right: 10px;">`Mikhail I`</a>', unsafe_allow_html=True)
+github_link = "https://github.com/m-ignatenko"
+st.markdown(f'<a href="{github_link}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/128/14063/14063266.png" width="25" height="25" style="vertical-align: middle; margin-right: 10px;">`Mikhail I`</a>', unsafe_allow_html=True)
+
+
 user_ticker = st.text_input('Stock Ticker', 'SPY').upper()
 display_mode = st.radio("Display Mode", ['Strike', 'Moneyness'])
 spot_price = yf.Ticker(user_ticker).history()['Close'].iloc[-1]
-@st.cache_data(ttl=3600)  
+@st.cache_data(ttl=3600) 
+
+
 def get_option_data(ticker):
     try:
         ticker_obj = yf.Ticker(ticker)
