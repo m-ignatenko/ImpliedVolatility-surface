@@ -5,7 +5,7 @@ import yfinance as yf
 from datetime import datetime
 import plotly.graph_objects as go
 from scipy.interpolate import griddata
-
+# configuration
 st.set_page_config(
         page_title="Implied Volatility Surface",
         page_icon="chart_with_upwards_trend",
